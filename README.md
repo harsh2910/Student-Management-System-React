@@ -5,3 +5,5 @@
 #### Edit the existing entries,
 #### Delete the non required entries.
 #### This web app also performes some basic validations like age should only be numeric and name should only contain characters.
+
+Project Link: [https://student-management-system-harsh.netlify.app/](https://student-management-system-harsh.netlify.app/)
