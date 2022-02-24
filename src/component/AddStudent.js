@@ -38,12 +38,12 @@ export default class AddStudent extends Component {
             this.props.showAlert('Phone number should be only numbers and contain 10 digit', 'danger');
             return;
         }
-        if(age < 18) {
+        if(!/^[0-9]+$/.test(age)) {
             this.setState({
                 age: ''
             })
-            this.props.showAlert('Age should be greater than 18', 'danger');
-            return;    
+            this.props.showAlert('Age should be only numbers', 'danger');
+            return;
         }
         let student = {
             fname,
@@ -99,7 +99,7 @@ export default class AddStudent extends Component {
                 </div>
                 <div className="col-md-3">
                     <label htmlFor="validationDefaultAge" className="form-label">Age</label>
-                    <input type="number" className="form-control" name="age" value={this.state.age} onChange={this.handleChange} id="validationDefaultAge"  aria-describedby="inputGroupPrepend2" required/>
+                    <input type="text" className="form-control" name="age" value={this.state.age} onChange={this.handleChange} id="validationDefaultAge"  aria-describedby="inputGroupPrepend2" required/>
                 </div>
                 <div className="col-12">
                     <button className="btn btn-success" type="submit">Submit</button>
