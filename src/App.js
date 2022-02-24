@@ -1,24 +1,77 @@
-import logo from './logo.svg';
+import Alert from './component/Alert';
 import './App.css';
+import { useState } from 'react';
+import Navbar from './component/Navbar';
+import AddStudent from './component/AddStudent';
+import DisplayStudent from './component/DisplayStudent';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Cookies from 'universal-cookie';
+import Home from './component/Home';
+import EditStudent from './component/EditStudent';
+ 
+const cookies = new Cookies();
+ 
 
 function App() {
+  const [alert, setAlert] = useState(null);
+  
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type
+    })
+    setTimeout(() => {
+      setAlert(null)
+    },1500)
+  }
+  
+  var c = []
+  if(cookies.get('data')){
+    c=cookies.get('data')
+  }
+  else{
+    cookies.set('data', [], { path: '/' });
+  }
+  const [students, setStudents] = useState(c);
+  const newStudent = (student) => {
+    let prev = students;
+    prev.push(student);
+    setStudents(prev);
+    cookies.remove('data', { path: '/' });
+    cookies.set('data', prev, { path: '/' });
+    // console.log(cookies.get('data')); // data
+    setAlert({ type: 'success', msg: 'Student added successfully' });
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500);
+  }
+  const deleteStudent = (id) => {
+    let prev = students;
+    prev.splice(id, 1);
+    setStudents(prev);
+    cookies.remove('data', { path: '/' });
+    cookies.set('data', prev, { path: '/' });
+    showAlert('success', 'Student deleted successfully');
+  }
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Router>
+    <Navbar/>
+    <Alert alert={alert} />
+      <Routes>
+        <Route exact path="/" element={<Home/>}/>
+        <Route exact path="/add" element={<AddStudent showAlert={showAlert} newStudent={newStudent}/>}/>
+        <Route path="/display" element={<DisplayStudent exact deleteStudent={deleteStudent} students={students} />}/>
+        <Route path="/edit/:id" element={<EditStudent students={students} showAlert={showAlert} setStudents={setStudents}/>} />
+      </Routes>
+    </Router>
+    </>
   );
 }
 
