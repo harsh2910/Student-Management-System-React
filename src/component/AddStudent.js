@@ -102,7 +102,7 @@ export default class AddStudent extends Component {
                     <input type="number" className="form-control" name="age" value={this.state.age} onChange={this.handleChange} id="validationDefaultAge"  aria-describedby="inputGroupPrepend2" required/>
                 </div>
                 <div className="col-12">
-                    <button className="btn btn-primary" type="submit">Submit</button>
+                    <button className="btn btn-success" type="submit">Submit</button>
                 </div>
             </form>
         </div>

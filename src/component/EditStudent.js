@@ -119,7 +119,7 @@ export default function EditStudent(props) {
                     <input type="number" className="form-control" name="age" value={age} onChange={handleChange} id="validationDefaultAge"  aria-describedby="inputGroupPrepend2" required/>
                 </div>
                 <div className="col-12">
-                    <button className="btn btn-primary" type="submit">Save Changes</button>
+                    <button className="btn btn-success" type="submit">Save Changes</button>
                 </div>
             </form>
         </div>

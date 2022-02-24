@@ -2,8 +2,21 @@ import React from 'react'
 import {Link} from "react-router-dom";
 
 export default function DisplayStudent(props) {
-    return (document.title="Student Details",
-        (parseInt(props.students.length)) && <div className='container'>
+    document.title="Student Details";
+    {if (props.students.length < 1) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <h1 className="text-center">No Student Found</h1>
+                        <Link to="/add" className="btn btn-success">Add Student</Link>
+                    </div>
+                </div>
+            </div>
+        )
+    }}
+    return (
+        <div className='container'>
             <h1 className='text-center mb-5'>Student Details</h1>
             <table className="table table-dark table-striped">
                 <thead>
@@ -37,4 +50,5 @@ export default function DisplayStudent(props) {
             </table>
         </div>
     )
+    
 }
