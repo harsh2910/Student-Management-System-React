@@ -46,7 +46,8 @@ function App() {
     showAlert('Student added successfully', 'success');
   }
   const deleteStudent = (id) => {
-    if (confirm("Press a button!") == true) {
+    let check = window.confirm('Are you sure you want to delete this student?');
+    if (check === true) {
       let prev = students;
       prev.splice(id, 1);
       setStudents(prev);
