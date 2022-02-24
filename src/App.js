@@ -43,19 +43,19 @@ function App() {
     setStudents(prev);
     cookies.remove('data', { path: '/' });
     cookies.set('data', prev, { path: '/' });
-    // console.log(cookies.get('data')); // data
-    setAlert({ type: 'success', msg: 'Student added successfully' });
-    setTimeout(() => {
-      setAlert(null);
-    }, 1500);
+    showAlert('Student added successfully', 'success');
   }
   const deleteStudent = (id) => {
-    let prev = students;
-    prev.splice(id, 1);
-    setStudents(prev);
-    cookies.remove('data', { path: '/' });
-    cookies.set('data', prev, { path: '/' });
-    showAlert('success', 'Student deleted successfully');
+    if (confirm("Press a button!") == true) {
+      let prev = students;
+      prev.splice(id, 1);
+      setStudents(prev);
+      cookies.remove('data', { path: '/' });
+      cookies.set('data', prev, { path: '/' });
+      showAlert('success', 'Student deleted successfully');
+    } else {
+      showAlert('Student not deleted', 'warning');
+    }
   }
   
 
