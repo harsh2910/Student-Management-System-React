@@ -7,7 +7,7 @@ const cookies = new Cookies();
 
 export default function EditStudent(props) {
     const Navigate = useNavigate();
-    
+    document.title = "Edit Student Details";
     var {id} = useParams();
     id = parseInt(id);
     let a = props.students;

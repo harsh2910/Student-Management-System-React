@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from "react-router-dom";
 
 export default function DisplayStudent(props) {
-    return (document.title="Display Student",
+    return (document.title="Student Details",
         (parseInt(props.students.length)) && <div className='container'>
             <h1 className='text-center mb-5'>Student Details</h1>
             <table className="table table-dark table-striped">
