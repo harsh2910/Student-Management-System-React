@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 export default function DisplayStudent(props) {
     document.title="Student Details";
-    {if (props.students.length < 1) {
+    if (props.students.length < 1) {
         return (
             <div className="container">
                 <div className="row">
@@ -14,7 +14,7 @@ export default function DisplayStudent(props) {
                 </div>
             </div>
         )
-    }}
+    }
     return (
         <div className='container'>
             <h1 className='text-center mb-5'>Student Details</h1>
